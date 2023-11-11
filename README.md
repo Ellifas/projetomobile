@@ -8,25 +8,22 @@ Antes de começar, certifique-se de ter instalado as seguintes ferramentas:
 Node.js: link para download
 npm (gerenciador de pacotes do Node.js): geralmente é instalado junto com o Node.js
 Instalação
-Clone este repositório: git clone https://github.com/Ellifas/projetomobile/settings
-Acesse o diretório do projeto: cd nome-do-repositorio
+Clone este repositório: git clone [https://github.com/Ellifas/projetomobile/settings](https://github.com/Ellifas/projetomobile.git)
+Acesse o diretório do projeto: cd projetomobile
 Instale as dependências: npm install
 Configuração
 [Se houver alguma configuração específica necessária para o projeto, adicione instruções detalhadas aqui.]
 
 Uso
-Explique como iniciar a aplicação e fornecer informações sobre como usá-la. Inclua exemplos, se aplicável.
+Certifique-se de ter configurado o ambiente Expo no seu sistema. Se ainda não tiver, execute o seguinte comando:
+expo init nome-do-projeto
+expo start
 
-bash
-Copy code
 npm start
 Acesse a aplicação em http://localhost:3000.
 
 Estrutura de Diretórios
 Explicação breve sobre a estrutura de diretórios do projeto.
-
-csharp
-Copy code
 /
 |-- src/            # Código-fonte da aplicação
 |   |-- assets/     # Recursos como imagens, fontes, etc.
@@ -51,5 +48,4 @@ Abra um Pull Request
 Licença
 Este projeto está licenciado sob a Licença XYZ.
 
-Contato
-[Seu Nome] - [Seu Email] - [Links para redes sociais, se aplicável]
+
