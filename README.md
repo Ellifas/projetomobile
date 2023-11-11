@@ -1,4 +1,4 @@
-Projeto mobile
+PROJETO MOBILE
 Descrição
 O projeto é uma aplicação mobile desenvolvida utilizando JavaScript e Node.js. Ele tem como objetivo simular uma loja de compra de jogos, tendo preferencia em jogos atuais e mais hypados.
 
