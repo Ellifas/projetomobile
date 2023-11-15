@@ -46,7 +46,6 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: '#991F36', // Alterado para vermelho
     borderWidth: 2, // Alterado para espessura 2
-    color: '#DDE3F0',
   },
   button: {
     backgroundColor: '#991F36',

@@ -116,14 +116,14 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   popupContent: {
-	backgroundColor: 'rgba(221, 227, 240, 0.1)',
-	padding: 20,
-	borderRadius: 10,
-	borderWidth: 1,
-	borderColor: '#991F36',
+    backgroundColor: 'rgba(221, 227, 240, 0.1)',
+    padding: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#991F36',
   },
   popupText: {
-	color: '#fff',
-	fontSize: 16,
+    color: '#fff',
+    fontSize: 16,
   },
 });

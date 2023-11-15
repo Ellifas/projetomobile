@@ -3,28 +3,51 @@ import {
   View,
   Text,
   TextInput,
-  StyleSheet,
   TouchableOpacity,
   Image,
+  Alert,
 } from 'react-native';
-import { styles } from './loginStyle';
 
+import { styles } from './loginStyle.js';
+
+// Componente de Login
 function Login({ navigation }) {
+  // Estados para armazenar o nome de usuário, senha e o foco dos campos
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isFocusedUsername, setIsFocusedUsername] = useState(false);
   const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
+  // Credenciais de usuário
+  const userCredentials = [
+    { username: 'Vieri', password: '123' },
+    { username: 'Davi', password: '123' },
+    { username: 'Eliffas', password: '123' },
+  ];
+
+  // Função para lidar com o login
   const handleLogin = () => {
-    navigation.navigate('Home');
+    // Verifica se há um usuário válido nas credenciais
+    const isValidUser = userCredentials.some(
+      (user) => user.username === username && user.password === password,
+    );
+
+    // Navega para a tela Home se o usuário for válido, caso contrário, exibe um alerta
+    if (isValidUser) {
+      navigation.navigate('Home');
+    } else {
+      Alert.alert('Error', 'Usuário e/ou senha inválidos');
+    }
   };
 
+  // Função para navegar para a tela de registro
   const handleUser = () => {
     navigation.navigate('RegisterScreen');
   };
 
   return (
     <View style={styles.container}>
+      {/* Imagem de fundo */}
       <Image
         source={require('../../../assets/union.png')}
         style={styles.containerImage}
@@ -32,6 +55,7 @@ function Login({ navigation }) {
 
       <View style={styles.formContainer}>
         <View style={styles.logoContainer}>
+          {/* Logo do aplicativo */}
           <Image
             source={require('../../../assets/BGLOGO.png')}
             style={styles.logoImage}
@@ -40,33 +64,33 @@ function Login({ navigation }) {
           <Text style={styles.loginTitle}>Faça seu login</Text>
         </View>
 
+        {/* Campo de entrada para o nome de usuário */}
         <TextInput
-          style={[
-            styles.input,
-            isFocusedUsername && { borderColor: '#991F36', borderWidth: 2 },
-          ]}
+          style={[styles.input, { color: '#DDE3F0' }]}
           placeholder="Nome de usuário"
           onChangeText={(text) => setUsername(text)}
           onFocus={() => setIsFocusedUsername(true)}
           onBlur={() => setIsFocusedUsername(false)}
-          placeholderTextColor="#DDE3F0" // Alterado para a cor branca
+          placeholderTextColor="#DDE3F0"
         />
+
+        {/* Campo de entrada para a senha */}
         <TextInput
-          style={[
-            styles.input,
-            isFocusedPassword && { borderColor: '#991F36', borderWidth: 2 },
-          ]}
+          style={[styles.input, { color: '#DDE3F0' }]}
           placeholder="Senha"
           secureTextEntry={true}
           onChangeText={(text) => setPassword(text)}
           onFocus={() => setIsFocusedPassword(true)}
           onBlur={() => setIsFocusedPassword(false)}
-          placeholderTextColor="#DDE3F0" // Alterado para a cor branca
+          placeholderTextColor="#DDE3F0"
         />
 
+        {/* Botão para realizar o login */}
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
+
+        {/* Botão para navegar para a tela de registro */}
         <TouchableOpacity
           style={styles.registerButton}
           onPress={() => navigation.navigate('RegisterScreen')}
@@ -80,75 +104,4 @@ function Login({ navigation }) {
   );
 }
 
-/* export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-    alignItems: 'center',
-  },
-  containerImage: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '50%',
-  },
-  formContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '75%',
-  },
-  logoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  divider: {
-    width: 2,
-    height: 50,
-    backgroundColor: '#991F36',
-    marginHorizontal: 10,
-  },
-  logoImage: {
-    width: 100,
-    height: 100,
-  },
-  loginTitle: {
-    fontSize: 24,
-    color: '#DDE3F0',
-  },
-  input: {
-    backgroundColor: 'rgba(221, 227, 240, 0.1)',
-    width: '100%',
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5,
-    borderColor: '#991F36', // Alterado para vermelho
-    borderWidth: 2, // Alterado para espessura 2
-    color: '#DDE3F0',
-  },
-  button: {
-    backgroundColor: '#991F36',
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-    width: '100%',
-  },
-  buttonText: {
-    color: '#DDE3F0',
-    fontSize: 16,
-  },
-  registerButton: {
-    color: '#DDE3F0',
-    padding: 14,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  registerButtonText: {
-    color: '#991F36',
-    fontSize: 15,
-  },
-});
- */
 export default Login;

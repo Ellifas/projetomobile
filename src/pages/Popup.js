@@ -1,21 +1,26 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 
+// Componente de Popup reutilizável
 const Popup = ({ showPopup, setShowPopup, popupMessage }) => (
   <Modal
     transparent={true}
     visible={showPopup}
     animationType="slide"
     onRequestClose={() => {
+      // Fechar o popup ao pressionar o botão de fechar ou tocar fora da área do popup
       setShowPopup(false);
     }}
   >
     <View style={styles.popupContainer}>
       <View style={styles.popupContent}>
+        {/* Mensagem exibida no popup */}
         <Text style={styles.popupText}>{popupMessage}</Text>
         <View style={styles.buttonContainer}>
+          {/* Botão para fechar o popup */}
           <TouchableOpacity
             onPress={() => {
+              // Fechar o popup ao pressionar o botão "Fechar"
               setShowPopup(false);
             }}
             style={[styles.closeButton, styles.redButton]}
@@ -28,6 +33,7 @@ const Popup = ({ showPopup, setShowPopup, popupMessage }) => (
   </Modal>
 );
 
+// Estilos do componente
 const styles = StyleSheet.create({
   popupContainer: {
     flex: 1,

@@ -3,9 +3,7 @@ import {
   View,
   Text,
   Image,
-  StyleSheet,
   TouchableOpacity,
-  FlatList,
   ScrollView,
   Modal,
 } from 'react-native';
@@ -77,7 +75,9 @@ const Home = () => {
   ];
 
   const adicionarAoCarrinho = (jogo) => {
-    const jogoNoCarrinho = carrinho.find((jogoCarrinho) => jogoCarrinho.id === jogo.id);
+    const jogoNoCarrinho = carrinho.find(
+      (jogoCarrinho) => jogoCarrinho.id === jogo.id,
+    );
 
     if (jogoNoCarrinho) {
       setPopupMessage(`O jogo ${jogo.name} já está no carrinho.`);
@@ -95,6 +95,10 @@ const Home = () => {
 
   const navigateToCart = () => {
     navigation.navigate('CompraDeJogo', { jogosSelecionados: carrinho });
+  };
+
+  const navigateToMyPurchases = () => {
+    navigation.navigate('MinhasCompras');
   };
 
   const closePopup = () => {
@@ -116,27 +120,40 @@ const Home = () => {
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.buttonsContainer}>
             <TouchableOpacity
-              style={[styles.button, { marginRight: 10, width: 120, height: 40 }]}
+              style={[
+                styles.button,
+                { marginRight: 10, width: 120, height: 40 },
+              ]}
               onPress={navigateToAddGame}
             >
               <Text style={styles.buttonText}>Adicionar Jogo</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.button, { marginRight: 10, width: 120, height: 40 }]}
+              style={[
+                styles.button,
+                { marginRight: 10, width: 120, height: 40 },
+              ]}
               onPress={navigateToCart}
             >
               <Text style={styles.buttonText}>Carrinho</Text>
             </TouchableOpacity>
-            {/* Add other buttons here... */}
+            <TouchableOpacity
+              style={[
+                styles.button,
+                { marginRight: 10, width: 120, height: 40 },
+              ]}
+              onPress={navigateToMyPurchases}
+            >
+              <Text style={styles.buttonText}>MinhasCompras</Text>
+            </TouchableOpacity>
+            {/* Adicione outros botões aqui... */}
           </View>
         </ScrollView>
         <View style={styles.lastReleasesContainer}>
           <Text style={styles.sectionTitle}>Últimas Novidades</Text>
-          <FlatList
-            data={gamesArray}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-              <View style={styles.gameItem}>
+          <View>
+            {gamesArray.map((item) => (
+              <View key={item.id} style={styles.gameItem}>
                 <Image source={{ uri: item.image }} style={styles.gameImage} />
                 <View style={styles.gameDetails}>
                   <View style={styles.gameInfo}>
@@ -146,17 +163,23 @@ const Home = () => {
                   <TouchableOpacity
                     style={styles.addToCartButton}
                     onPress={() => {
-                      if (!carrinho.find((jogoCarrinho) => jogoCarrinho.id === item.id)) {
+                      if (
+                        !carrinho.find(
+                          (jogoCarrinho) => jogoCarrinho.id === item.id,
+                        )
+                      ) {
                         adicionarAoCarrinho(item);
                       }
                     }}
                   >
-                    <Text style={styles.addToCartButtonText}>Adicionar ao Carrinho</Text>
+                    <Text style={styles.addToCartButtonText}>
+                      Adicionar ao Carrinho
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>
-            )}
-          />
+            ))}
+          </View>
         </View>
         {showPopup && (
           <Modal
@@ -168,8 +191,7 @@ const Home = () => {
             <View style={styles.popupContainer}>
               <View style={styles.popupContent}>
                 <Text style={styles.popupText}>{popupMessage}</Text>
-                <TouchableOpacity onPress={closePopup}>
-                </TouchableOpacity>
+                <TouchableOpacity onPress={closePopup}></TouchableOpacity>
               </View>
             </View>
           </Modal>
